@@ -7,7 +7,7 @@ const callback = (frst, scnd, thrd) => {
     console.log(`Второй аргумент ${scnd}`);
 }
 
-// emitter.on('message', callback) // .on - подписываемся на событие
+emitter.on('message', callback) // .on - подписываемся на событие
 emitter.once('message', callback) // .once - подписываемся на событие но позволяем генерировать событие лишь 1 раз
 
 
@@ -17,15 +17,16 @@ emitter.emit('message')
 emitter.emit('message')
 
 emitter.removeAllListeners() // Удаляет все слушатели
-emitter.removeListener('message', callback) // Удаляет какой-то конкретный слушатель 
+emitter.removeListener('message', callback) // Удаляет какой-то конкретный слушатель ℹ️ при удалении callback нужен так как 
+                                            // на одно и тоже название события('message') мы можем вешать несколько callback 
 
-// const MESSAGE = process.env.message || '';
+const MESSAGE = process.env.message || '';
 
-// if(MESSAGE) {
-//     emitter.emit('message', MESSAGE, 'some text')  // .emit - генерирует событие
-// } else {
-//     emitter.emit('message', 'Вы не указали сообщение😞')
-// }
+if(MESSAGE) {
+    emitter.emit('message', MESSAGE, 'some text')  // .emit - генерирует событие
+} else {
+    emitter.emit('message', 'Вы не указали сообщение😞')
+}
 
 
 
