@@ -4,14 +4,14 @@ const PORT = process.env.PORT || 5000;
 
 const server = http.createServer((req, res) => {        // работа со стримами req, res
     // res.writeHead(200, {
-    //     'Content-type': 'text/html; charset=utf-8'      // Чтобы браузер понял кирилицу и html разметку
+    //     'Content-type': 'text/html; charset=utf-8'   // Чтобы браузер понял кирилицу и html разметку
     // })
 
     res.writeHead(200, {
-        "content-type": "application/json" // Чтобы браузер понял что сервер отправил данные в формате JSON
+        "content-type": "application/json"  // Чтобы браузер понял что сервер отправил данные в формате JSON
     })
     if(req.url === '/users') {
-        return res.end(JSON.stringify([ // Так как стрин работает по умолчанию с буфером или со строкой нужно привести данные к строке
+        return res.end(JSON.stringify([     // Так как стрин работает по умолчанию с буфером или со строкой нужно привести данные к строке
             {id: 1, name: 'Spongebob'},
             {id: 2, name: 'Patrik'}
         ]));
