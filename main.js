@@ -9,7 +9,7 @@ const urlParser = require('./framework/parseUrl');
 const app = new Application()
 
 app.use(jsonParser);
-app.use(urlParser('http://localhost:5000')); // здесь вызываем так как это функция которая возвращает midleware
+app.use(urlParser('http://localhost:5000')); // здесь вызываем и передаём base url так как это функция которая возвращает midleware
 
 app.addRouter(userRouter);
 

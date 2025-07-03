@@ -38,8 +38,7 @@ module.exports = class Application {
                 if(body) {
                     req.body = JSON.parse(body);
                 }
-                this.midlewares.forEach(midleware => midleware(req, res));
-                console.log(req.pathname);
+                this.midlewares.forEach(midleware => midleware(req, res)); // вызываем перед генерацией события
                 const emitted = this.emitter.emit(this._getRouteMask(req.pathname, req.method), req, res); // генерируем событие нам возвр-ся true или false
                     if(!emitted) { // Если обратились по не существующему эндпоинту то закрываем стрим(чтобы он бесконечно не грузился)
                         res.end();

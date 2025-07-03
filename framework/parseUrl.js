@@ -1,7 +1,8 @@
 module.exports = (baseUrl) => (req, res) => {
     const parsedUrl = new URL(req.url, baseUrl);
+    const params = {};
 
-    return {
-        pathname: parsedUrl.pathname,
-    }
+    parsedUrl.searchParams.forEach((value, key) => {params[key] = value});
+    req.pathname = parsedUrl.pathname;
+    req.params = params;
 }
