@@ -1,11 +1,13 @@
-const http = require('http');
-const EventEmitter = require('events'); // На соответсвующий запрос необходимо генерировать соответсвующее событие
+// Здесь создаём сервер и обрабатываем middleware и роуты.
 
+const http = require('http');
+const EventEmitter = require('events'); // На соответсвующий запрос необходимо генерировать соответсвующее событие 
+                                        // (нужен для кастомной маршрутизации (типа роутов).)
 module.exports = class Application {
     constructor() {
         this.emitter = new EventEmitter();
         this.server = this._createServer();
-        this.midlewares = [];
+        this.midlewares = []; // сюда сохраняем все midlewares
     }
 
     use(midleware) {
@@ -13,7 +15,7 @@ module.exports = class Application {
     }
 
     listen(port, callback) {
-        this.server.listen(port, callback);
+        this.server.listen(port, callback); // Запускаем сервер
     }
 
     addRouter(router) {             // Добавление роутера: 1️⃣ Получили роутер проетерировались по каждому эндпоинту. 
